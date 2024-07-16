@@ -8,6 +8,10 @@ logging.basicConfig(level=logging.DEBUG)
 
 BASE_URL = "https://phasmophobia.fandom.com/api.php"
 
+@app.route('/')
+def home():
+    return 'Hello, World!'
+
 @app.route('/fandom', methods=['GET'])
 def fetch_fandom_data():
     query = request.args.get('query')
@@ -70,5 +74,5 @@ def fetch_fandom_data():
     return jsonify({"error": "No query provided"}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 
